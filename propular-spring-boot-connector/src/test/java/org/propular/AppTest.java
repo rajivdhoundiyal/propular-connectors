@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Configuration;
@@ -25,10 +26,13 @@ public class AppTest {
 	@Autowired
 	PropularProperty propularProperty;
 	
+	@Value("sddfdsfsf")
+	String abc;
+	
 	@Test
-	public void testApp() throws IOException {
+	public void testApp() {
 		System.out.println(propularProperty.getProperties());
-		//assertTrue(true);
+		System.out.println(abc);
 	}
 	
 	@Configuration
