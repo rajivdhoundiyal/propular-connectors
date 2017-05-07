@@ -18,12 +18,13 @@
 		<spring-boot-version>1.5.2.RELEASE</spring-boot-version>
 		<jersy-version>1.8</jersy-version>
 		<spring-version>4.3.7.RELEASE</spring-version>
+		<junit-version>4.12</junit-version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>${junit-version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -74,14 +75,14 @@
 			<!-- <type>test-jar</type> -->
 		</dependency>
 		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-client</artifactId>
-			<version>${jersy-version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>propular-commons</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 </project>

@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.propular.constants.PropularConstants;
 import org.propular.constants.StringConstants;
+import org.propular.util.PropularRestUtil;
 import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.core.io.support.PropertiesLoaderSupport;
 
@@ -27,43 +28,15 @@ public class PropularProperty extends PropertiesLoaderSupport {
 	}
 
 	private void process() {
-
-		Client client = Client.create();
-		StringBuffer URL = new StringBuffer(propularProperties.getUrl());
-		URL.append(StringConstants.SLASH).append(PropularConstants.API_PATH).append(StringConstants.SLASH)
-				.append(propularProperties.getProjectId()).append(StringConstants.SLASH)
-				.append(propularProperties.getPropertyGroup()).append(StringConstants.SLASH)
-				.append(propularProperties.getEnvironment());
-		WebResource webResource = client.resource(URL.toString());
-
-		ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON)
-				.header(PropularConstants.AUTHORIZATION,
-						PropularConstants.BEARER + PropularConstants.SPACE + propularProperties.getSecurityToken())
-				.get(ClientResponse.class);
-
-		if (response == null || response.getStatus() != 200) {
-			throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
-		}
-
-		Map<String, Object> map = new HashMap<String, Object>();
-		String responseInStr = null;
+		Properties properties = null;
 		try {
-			responseInStr = response.getEntity(String.class);
-			map = new JacksonJsonParser().parseMap(responseInStr);
-		} catch (Exception e) {
-			logger.error("Error in marshalling the server response, the response from server was " + responseInStr
-					+ " and headers were " + response.getHeaders(), e);
-		}
-
-		Properties properties = new Properties();
-		properties.putAll(map);
-		try {
+			properties = PropularRestUtil.getProperties(propularProperties.getUrl(), propularProperties.getProjectCode(), 
+					propularProperties.getPropertyGroup(), propularProperties.getEnvironment(), propularProperties.getSecurityToken());
 			loadProperties(properties);
+			this.properties = properties;
 		} catch (Exception e) {
-			logger.error("Error in loading properties, the response from server was " + responseInStr
-					+ " and headers were" + response.getHeaders(), e);
+			logger.error("Error in loading properties, the response from server was " + properties, e);
 		}
-		this.properties = properties;
 	}
 
 	public Properties getProperties() {

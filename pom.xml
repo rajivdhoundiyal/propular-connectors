@@ -24,6 +24,7 @@
   </dependencies>
 
   <modules>
+    <module>propular-commons</module>
     <module>propular-spring-boot-connector</module>
     <module>propular-spring-connector</module>
   </modules>

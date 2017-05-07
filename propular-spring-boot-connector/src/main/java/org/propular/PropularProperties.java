@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class PropularProperties {
 
 	private String url;
-	private String projectId;
+	private String projectCode;
 	private String propertyGroup;
 	private String environment;
 	private String securityToken;
@@ -43,12 +43,12 @@ public class PropularProperties {
 		this.securityToken = securityToken;
 	}
 
-	public String getProjectId() {
-		return projectId;
+	public String getProjectCode() {
+		return projectCode;
 	}
 
-	public void setProjectId(String projectId) {
-		this.projectId = projectId;
+	public void setProjectCode(String projectCode) {
+		this.projectCode = projectCode;
 	}
 
 }

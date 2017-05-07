@@ -9,27 +9,21 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<groupId>org.propular</groupId>
-	<artifactId>propular-spring-connector</artifactId>
+	<artifactId>propular-commons</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<name>propular-spring-connector</name>
+	<name>propular-commons</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring-version>4.3.7.RELEASE</spring-version>
 		<jersy-version>1.8</jersy-version>
-		<junit-version>4.12</junit-version>
+		<slf4j-version>1.7.25</slf4j-version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit-version}</version>
+			<version>3.8.1</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>${spring-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
@@ -37,14 +31,14 @@
 			<version>${jersy-version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${spring-version}</version>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>${jersy-version}</version>
 		</dependency>
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>propular-commons</artifactId>
-			<version>${project.version}</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j-version}</version>
 		</dependency>
 	</dependencies>
 </project>
